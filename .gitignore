@@ -1,14 +1,2 @@
-# from coursework
 *~
 *.tmp
-
-# macOS
-.DS_Store
-
-# Python cache
-__pycache__/
-*.py[cod]
-*$py.class
-
-# ignore sandbox file
-sandbox/
