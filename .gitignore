@@ -13,3 +13,5 @@ __pycache__/
 # ignore sandbox
 sandbox/
 
+# ignore spawannxs.txt
+spawannxs.txt
