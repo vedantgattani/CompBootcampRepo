@@ -14,9 +14,9 @@ the file, and continue till the end.
 #3
 tail -n +2 ../data/fasta/e_coli.fasta | tr -d '\n' | wc -c
 
-The first part removes the header and the second (middle) part removes newline characters and joins all lines into a single string.
+The first part removes the header and the second (middle) part deletes newline characters and joins all lines into a single string.
 The third command, similar to wc -l, counts all letters (symbols), including ambiguous nucleotides such as N, R, Y, M, and W.
-## I found tr -d '\n' on stack overflow, and used it to remove newline characters" ##
+## I found tr -d '\n' on stack overflow, and used it to remove newline characters - also later found in class notes ##
 
 #4
 tail -n +2 ../data/fasta/e_coli.fasta | tr -d '\n' | grep -o 'ATGC' | wc -l
@@ -34,5 +34,4 @@ Chunks of commands in both brackets do the same as in the last answer, except fo
 This includes getting rid of header and newline characters, finding every occurance of ATs and GCs and then wc -l counting them.
 Outputs from both those brackets are divided using "/" to find the ratio. 
 Eventually, the output is then sent to bc -l (using echo in the beginning), to show the result.
-
 ## I found out how to correctly use bc -l (by using echo) and what scale = x does on stack overflow ##
