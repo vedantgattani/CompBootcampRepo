@@ -1,8 +1,8 @@
 #1
 wc -l ../data/fasta/407228326.fasta ../data/fasta/407228412.fasta ../data/fasta/e_coli.fasta
 
-# As mentioned, the final lines of the two fasta files are not new-line terminates, so wc -l counts one less line than there acually is 
-# (since wc -l only counts newline characters)
+# As mentioned in assignment, the final lines of the two fasta files are not new-line terminates, 
+# so wc -l counts one less line than there acually is (since wc -l only counts newline characters)
 
 #2
 tail -n +2 ../data/fasta/e_coli.fasta
@@ -22,7 +22,7 @@ tail -n +2 ../data/fasta/e_coli.fasta | tr -d '\n' | wc -c
 tail -n +2 ../data/fasta/e_coli.fasta | tr -d '\n' | grep -o 'ATGC' | wc -l
 
 # The first two commands remain the same as before, and are used to remove the header and newline characters. grep -o, as mentioned
-# in the assignment, outputs each individual occurance of ATGC and wc -l counts those occurances.
+# in the assignment, outputs each individual occurance of A, T, G, and C, and wc -l counts those occurances.
 
 #5
 echo "scale = 5 ; $(tail -n +2 ../data/fasta/e_coli.fasta | tr -d '\n' | grep -o '[AT]' | wc -l) / $(tail -n +2 ../data/fasta/e_coli.fasta | tr -d '\n' | grep -o '[GC]' | wc -l)" | bc -l
