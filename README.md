@@ -8,6 +8,39 @@ data/ contains all files used for assignments/practicals through the course.
 
 # Week 1 Assignment notes
 
+## Pseudocode for practical (validating tree-survey records)
+INPUT: tree observations at silwood, inlcuding record ID, location, genus, species, distance and angle (import silwood_trees_raw.csv)   
+    1. Read csv file    
+    2. Create empty lists for accepted records and rejected records 
+    3. For each tree:   
+            - remove whitespace 
+            - check that ID is valid and not duplicated 
+            - check that location is valid
+            - check that genus and species are recognized   
+            - check that disance and angles are valid numbers and within range  
+        If all checks pass, add cleaned record to accepted list.    
+        Otherwise, record all reasons for rejection.    
+    4. Sort accepted records by ID  
+    5. Count each oak species among accepted records    
+    6. Write three csv files    
+OUTPUT: silwood_trees_clean.csv ; silwood_tree_issues ; oak_species_counts.csv  
+
+## AI use ##
+ChatGPT; Oct 13: Using elif conditions  
+ChatGPT; Oct 13: Learnt about .isdigits() while finding a way to test if characters are digits - used in clean_silwood_trees.py 
+ChatGPT; Oct 13: Used to fix indentation problem in script. "Unexpected indentation" and "Expected expression" messages on script.  
+ChatGPT; Oct 14: Used to explore math package, using functions such as math.isfinite() - used in def validate_record().  
+ChatGPT; Oct 14: Used to fix indentation and formatting again - constant red and yellow squigly lines on script. In the process, model also provided unsolicited advice on typos that were eventually fixed.    
+ChatGPT; Oct 15: Used to confirm the need, and correct use of .join(), used in def process_records().   
+ChatGPT; Oct 15: Used to find a way to sort records by record_id - suggested .sort() with key=lambda... Used in def process_records().  
+
+
+
+## Additional utilties ##
+.sort(key=lambda...) found through ChatGPT (Oct 15). Used in def process_records() function in clean_silwood_trees.py   
+
+# Week 1 Assignment notes
+
 ## Important directories ##
 data/fasta contains all data files used for FASTA exercise. 
 data/temperature contains all data files used to test csvtospace.sh 
@@ -24,7 +57,7 @@ ChatGPT; Oct 6: Used to learn usage of bs -l, and whether it can be used in the 
 ChatGPT; Oct 7: Used to check loop that allows only one input file on tabtocsv.sh   
 ChatGPT; Oct 7: Used to learn difference between append with >> and overwrite with > to avoid duplication when tabtocsv.sh is run twice.    
 ChatGPT; Oct 7: Used to learn difference between tr and tr -s   
-ChatGPT; Oct 7: Used to understand standard error using >&2 
+ChatGPT; Oct 7: Used to understand standard error using >&2  
 ChatGPT; Oct 9: Used to learn difference between '[ATGC]' and 'ATGC', tried both on FASTA question 3 and 4. 
 
 ## Additional utilities ##
