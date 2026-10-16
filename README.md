@@ -6,7 +6,7 @@ Important files/directories: README.md, code/, and data/
 code/ contains all scripts cloned from MulQuaBio repo or created for assignments.   
 data/ contains all files used for assignments/practicals through the course.    
 
-# Week 1 Assignment notes
+# Week 2 Assignment notes
 
 ## Pseudocode for practical (validating tree-survey records)
 INPUT: tree observations at silwood, inlcuding record ID, location, genus, species, distance and angle (import silwood_trees_raw.csv)   
@@ -23,7 +23,23 @@ INPUT: tree observations at silwood, inlcuding record ID, location, genus, speci
     4. Sort accepted records by ID  
     5. Count each oak species among accepted records    
     6. Write three csv files    
-OUTPUT: silwood_trees_clean.csv ; silwood_tree_issues ; oak_species_counts.csv  
+OUTPUT: silwood_trees_clean.csv (accepted records with standardised values, sorted by ID); silwood_tree_issues.csv (rejected records, their original row numbers, and the reasons for rejection) ; oak_species_counts.csv (counts of accepted oak records grouped by species)   
+
+## Running the program ##
+From the project root directory, run:   
+    python3 code/clean_silwood_trees.py 
+The program will create three output csv files in the results/ directory    
+To run the test script:
+    python 3 code/test_silwood_trees.py
+The test script will run hypothetical data rows to test the following:
+    - valid records with inconsistent capitalization and space
+    - missing and unrecognized values
+    - multiple errors within a single record
+    - duplicate record IDs and reuse of IDs from rejected records
+    - invalid, non-finite, and out-of-range measurements
+    - valid numeric boundary values
+    - seperation and sorting of accepted and rejected records
+    - oak species counting, near matches, and datasets containing no oaks   
 
 ## AI use ##
 ChatGPT; Oct 13: Using elif conditions  
@@ -33,8 +49,8 @@ ChatGPT; Oct 14: Used to explore math package, using functions such as math.isfi
 ChatGPT; Oct 14: Used to fix indentation and formatting again - constant red and yellow squigly lines on script. In the process, model also provided unsolicited advice on typos that were eventually fixed.    
 ChatGPT; Oct 15: Used to confirm the need, and correct use of .join(), used in def process_records().   
 ChatGPT; Oct 15: Used to find a way to sort records by record_id - suggested .sort() with key=lambda... Used in def process_records().  
-
-
+ChatGPT; Oct 15: Used to find a way to sort keys alphabetically, using sorted().    
+ChatGPT; Oct 16: Used to understand error messages in test_silwood_trees.py - backtracked to fixing issues with clean_silwood_trees.py  
 
 ## Additional utilties ##
 .sort(key=lambda...) found through ChatGPT (Oct 15). Used in def process_records() function in clean_silwood_trees.py   
