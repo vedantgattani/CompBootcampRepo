@@ -11,13 +11,13 @@ data/ contains all files used for assignments/practicals through the course.
 ## Pseudocode for practical (validating tree-survey records)
 INPUT: tree observations at silwood, inlcuding record ID, location, genus, species, distance and angle (import silwood_trees_raw.csv)   
     1. Read csv file    
-    2. Create empty lists for accepted records and rejected records 
+    2. Create empty lists for accepted records and rejected records      
     3. For each tree:   
-            - remove whitespace 
-            - check that ID is valid and not duplicated 
-            - check that location is valid
-            - check that genus and species are recognized   
-            - check that disance and angles are valid numbers and within range  
+            - remove whitespace      
+            - check that ID is valid and not duplicated      
+            - check that location is valid      
+            - check that genus and species are recognized          
+            - check that disance and angles are valid numbers and within range        
         If all checks pass, add cleaned record to accepted list.    
         Otherwise, record all reasons for rejection.    
     4. Sort accepted records by ID  
@@ -27,19 +27,24 @@ OUTPUT: silwood_trees_clean.csv (accepted records with standardised values, sort
 
 ## Running the program ##
 From the project root directory, run:   
+
     python3 code/clean_silwood_trees.py 
-The program will create three output csv files in the results/ directory    
-To run the test script:
+
+The program will create three output csv files in the results/ directory        
+
+To run the test script: 
+
     python 3 code/test_silwood_trees.py
-The test script will run hypothetical data rows to test the following:
+
+The test script will run hypothetical data rows to test the following:  
     - valid records with inconsistent capitalization and space
-    - missing and unrecognized values
-    - multiple errors within a single record
-    - duplicate record IDs and reuse of IDs from rejected records
-    - invalid, non-finite, and out-of-range measurements
-    - valid numeric boundary values
-    - seperation and sorting of accepted and rejected records
-    - oak species counting, near matches, and datasets containing no oaks   
+    - missing and unrecognized values       
+    - multiple errors within a single record        
+    - duplicate record IDs and reuse of IDs from rejected records       
+    - invalid, non-finite, and out-of-range measurements        
+    - valid numeric boundary values     
+    - seperation and sorting of accepted and rejected records       
+    - oak species counting, near matches, and datasets containing no oaks           
 
 ## AI use ##
 ChatGPT; Oct 13: Using elif conditions  
