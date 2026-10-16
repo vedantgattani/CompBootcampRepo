@@ -77,13 +77,13 @@ def validate_record(
 
     # fix capitalisation for each valid location
     elif location == "silwood bottom":
-        location == "Silwood Bottom"
+        location = "Silwood Bottom"
     elif location == "nash's field":
-        location == "Nash's Field"
+        location = "Nash's Field"
     elif location == "manor house":
-        location == "Manor House"
+        location = "Manor House"
     elif location == "reactor wood":
-        location == "Reactor Wood"
+        location = "Reactor Wood"
 
     # if nothing matches the above names
     else:
@@ -173,7 +173,7 @@ def validate_record(
             angle = float(angle) # try converting to numeric
 
             # if angel is not a number
-            if math.infinite(angle) == False:
+            if math.isfinite(angle) == False:
                 reasons.append("invalid angle_degrees")
 
             # if angle is below range
@@ -182,7 +182,7 @@ def validate_record(
 
             # if angle is above range
             elif angle >= 90:
-                reasons.append('agle_degrees out of range')
+                reasons.append('angle_degrees out of range')
 
         # if doesn't convert t numeric, show reason
         except ValueError:
@@ -212,12 +212,75 @@ def process_records(
     rows: Iterable[dict[str, str]],
 ) -> tuple[list[dict[str, str]], list[dict[str, str]]]:
     """Sort records into accepted rows and issue reports."""
-    raise NotImplementedError("Write the loop that processes all records")
+    
+    # create empty lists and a set 
+    clean_records = []  # all accepted, clean records
+    issues = [] # info about rejectde records
+    accepted_ids = set()    # for storing results
+
+    # start at row 2 b/c row 1 contains the csv header
+    source_row = 2
+
+    # loop through every tree record
+    for row in rows:
+
+        # validate the current record using our previous function
+        cleaned_record, reasons = validate_record(
+            row, source_row, accepted_ids)
+
+        # store accepted records
+        if cleaned_record != None:
+            clean_records.append(cleaned_record)
+        # store rejected records and their reasons
+        else:
+            issue = {
+                "source_row": str(source_row),
+                "record_id": row["record_id"].strip(),
+                "reasons": "; ".join(reasons)
+            }
+            issues.append(issue)
+
+        # move to the next row number
+        source_row = source_row + 1
+
+    # sort accepted records by record_id
+    clean_records.sort(key=lambda record: record["record_id"])  # additional utility mentioned in README.md
+
+    # return both lists
+    return clean_records, issues
 
 
 def summarise_oaks(clean_records: Iterable[dict[str, str]]) -> list[dict[str, str]]:
     """Count accepted oak records by species."""
-    raise NotImplementedError("Count the accepted oak records")
+        # create empty dictionary to store oak species counts
+    oak_counts = {}
+
+    # loop through all accepted records
+    for record in clean_records:
+        # xheck whether the tree is an oak
+        if record["genus"] == "Quercus":
+            # get the species name
+            species = record["species"]
+            # increase the count by 1 if the species already exists
+            if species in oak_counts:
+                oak_counts[species] = oak_counts[species] + 1
+            # otherwise, start the count at 1
+            else:
+                oak_counts[species] = 1
+
+    # create an empty list for the final summary
+    summary = []
+
+    # loop through the species in alphabetical order
+    for species in sorted(oak_counts):  # additional utility sorted() used, mentioned in README.md
+        # add the species and its count to the summary
+        summary.append({
+            "species": species,
+            "count": str(oak_counts[species])
+        })
+
+    # return the completed summary
+    return summary
 
 
 def write_csv(
