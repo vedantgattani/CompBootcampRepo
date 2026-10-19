@@ -6,6 +6,40 @@ Important files/directories: README.md, code/, and data/
 code/ contains all scripts cloned from MulQuaBio repo or created for assignments.   
 data/ contains all files used for assignments/practicals through the course.    
 
+# Week 3 Assignment notes   
+
+## Overview ##
+This practical uses R to calculate tree heights from a dataset containing 120 tree measurements. The TreeHeight() function applies a calculation to every record, and the estimated heights are added as a fourth column next to the original measurements. 
+    Input: data/trees.csv - this is the original dataset with columns Species, Distance.m, and Angle.degrees   
+    Output: results/TreeHts.csv - this contains the original three columns plus the calculated height_m column. 
+
+## Running the script ##
+From the project root directory, run:
+
+    Rscript code/TreeHeight.R   
+
+OR, run the following from an R session:    
+
+    source("code/TreeHeight.R")
+
+## Validation ##
+Before calculating heights, the script checks:  
+    - all three required columns are present    
+    - distance and angle measurements are numeric, finite, and within range 
+If any of the checks fails, the script stops and returns an error message.  
+
+## Manual verification ##
+I manually checked the TreeHeight() function by feeding it a distance of 8m and angle of 45. The function responded with 8, which is the correct height.    
+
+Additionally, I also checked the first record from data/trees.csv:  
+    Species: Populus tremula     
+    Distance: 31.67 
+    Angle: 41.28    
+    Calculated height: 27.80       
+And it matched the height calculated by physcially using the formula.    
+
+Finally, I confirmed there were 120 data rows in the output file by using nrow(), and rerunning the script replaced outputs without appending suplicate rows.   
+
 # Week 2 Assignment notes
 
 ## Pseudocode for practical (validating tree-survey records)
