@@ -6,7 +6,7 @@ Important files/directories: README.md, code/, and data/
 code/ contains all scripts cloned from MulQuaBio repo or created for assignments.   
 data/ contains all files used for assignments/practicals through the course.    
 
-# Week 3 Assignment notes   
+# Week 3 Assignment notes     
 
 ## Overview ##
 This practical uses R to calculate tree heights from a dataset containing 120 tree measurements. The TreeHeight() function applies a calculation to every record, and the estimated heights are added as a fourth column next to the original measurements. 
@@ -39,6 +39,30 @@ Additionally, I also checked the first record from data/trees.csv:
 And it matched the height calculated by physcially using the formula.    
 
 Finally, I confirmed there were 120 data rows in the output file by using nrow(), and rerunning the script replaced outputs without appending suplicate rows.   
+
+## Pound hill practical ##
+This analysis investigates how mean plant species richness per quadrat varies among March, May and October cultivation treatments at Pound Hill. It also compares species richness with total plant abundance.  
+    Input: data/pound_hill_data.csv ; data/pound_hill_meta_data.csv 
+    Output: results/pound_hill_plot_richness.csv - mean species richness per quadrat for each of the 12 plots  
+            results/pound_hill_plot_richness.pdf - figure comparing plot-level species richness across cultivation treatments    
+            results/pound_hill_plot_abundance.pdf - figure comparing plot-level abundance across treatments 
+
+From the project root, run: 
+
+    Rscript code/pound_hill_analysis.R
+
+The script uses the reshape2, dplyr and ggplot2 packages.
+To verify reproducibility, I ran the script twice from the project root and confirmed that the output csv and pdf files are recreated successfully without changing the original data.  
+
+## AI use ##
+ChatGPT; Oct 20: Learn what commandArgs(trailingOnly = TRUE) does, before using it for get_TreeHeight.R 
+ChatGPT; Oct 20: Learned how to remove .csv from file names using sub(), and use paste0() to join two strings together, so file name can be attached with _treeheights. 
+ChatGPT; Oct 20: Found file.path() that specifically joins directory and file name, used in get_TreeHeight.R    
+
+## Additional utilties ##
+sub() - used to to remove .csv from file names. 
+paste0() used to join two strings together. 
+file.path() used to join directory and any file name together.  
 
 # Week 2 Assignment notes
 
