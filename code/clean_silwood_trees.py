@@ -132,6 +132,40 @@ def validate_record(
     # if nothing matches above names
     else:
         reasons.append("invalid species")
+    
+    ## check genus and species combination
+    if "missing genus" not in reasons:
+        if "invalid genus" not in reasons:
+            if "missing species" not in reasons:
+                if "invalid species" not in reasons:
+
+                    valid_combination = False
+
+                    if genus == "Quercus":
+                        if species == "robur":
+                            valid_combination = True
+                        elif species == "petraea":
+                            valid_combination = True
+
+                    elif genus == "Acer":
+                        if species == "pseudoplatanus":
+                            valid_combination = True
+
+                    elif genus == "Betula":
+                        if species == "pendula":
+                            valid_combination = True
+
+                    elif genus == "Fagus":
+                        if species == "sylvatica":
+                            valid_combination = True
+
+                    elif genus == "Fraxinus":
+                        if species == "excelsior":
+                            valid_combination = True
+
+                    if valid_combination == False:
+                        reasons.append("invalid genus/species combination")
+    
 
     ## clean and validate distance
     # remove spaces

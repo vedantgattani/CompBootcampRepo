@@ -42,8 +42,9 @@ Finally, I confirmed there were 120 data rows in the output file by using nrow()
 
 ## Pound hill practical ##
 This analysis investigates how mean plant species richness per quadrat varies among March, May and October cultivation treatments at Pound Hill. It also compares species richness with total plant abundance.  
-    Input: data/pound_hill_data.csv ; data/pound_hill_meta_data.csv 
-    Output: results/pound_hill_plot_richness.csv - mean species richness per quadrat for each of the 12 plots  
+    Input: data/pound_hill_data.csv ; data/pound_hill_meta_data.csv     
+    Output:     
+            results/pound_hill_plot_richness.csv - mean species richness per quadrat for each of the 12 plots  
             results/pound_hill_plot_richness.pdf - figure comparing plot-level species richness across cultivation treatments    
             results/pound_hill_plot_abundance.pdf - figure comparing plot-level abundance across treatments 
 
@@ -56,7 +57,7 @@ To verify reproducibility, I ran the script twice from the project root and conf
 
 ## AI use ##
 ChatGPT; Oct 20: Learn what commandArgs(trailingOnly = TRUE) does, before using it for get_TreeHeight.R 
-ChatGPT; Oct 20: Learned how to remove .csv from file names using sub(), and use paste0() to join two strings together, so file name can be attached with _treeheights. 
+ChatGPT; Oct 20: Learned how to remove .csv from file names using sub(), and use paste0() to join two strings together, so file name can be attached with _treeheights.     
 ChatGPT; Oct 20: Found file.path() that specifically joins directory and file name, used in get_TreeHeight.R    
 
 ## Additional utilties ##
@@ -88,7 +89,12 @@ From the project root directory, run:
 
     python3 code/clean_silwood_trees.py 
 
-The program will create three output csv files in the results/ directory        
+This script primarily validates each row of data in the input file against rules, range, and acceptable value/entry for each variable. Accepted and rejected records are separted to different files, and using only the accepted records, the script gives a count of each oak species in the inpit data file.     
+
+The program will create three output csv files in the results/ directory   
+    - silwood_trees_clean.csv - accepted records with standardised values, sorted by ID 
+    - silwood_tree_issues.csv - rejected records, their original row numbers, and the reasons for rejection 
+    - oak_species_counts.csv - counts of accepted oak records grouped by species    
 
 To run the test script: 
 
@@ -117,6 +123,9 @@ ChatGPT; Oct 16: Used to understand error messages in test_silwood_trees.py - ba
 
 ## Additional utilties ##
 .sort(key=lambda...) found through ChatGPT (Oct 15). Used in def process_records() function in clean_silwood_trees.py   
+
+## Corrected data flow ##
+Based on Assignment 2 feedback, I found that code/clean_silwood_trees.py was missing a validation check for the correct genus-species combination, and code/test_silwood_trees.py was missing a test that checks for the same. I added the checks in each script and, as advised in feedback, turned the diagnosis into a regression test by adding a focused assertion for the identified rule, checking both its validation result and its destination.
 
 # Week 1 Assignment notes
 

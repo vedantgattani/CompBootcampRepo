@@ -1,5 +1,8 @@
-#### TEST validate_record() FUNCTION ####
-from clean_silwood_trees import validate_record # import function from main script
+from clean_silwood_trees import validate_record # import functions from main script
+from clean_silwood_trees import process_records
+from clean_silwood_trees import summarise_oaks
+
+### TEST validate_record() FUNCTION ###
 
 ## test for a normal record ##
 # create a hypothetical row of data
@@ -184,6 +187,33 @@ assert cleaned_record["angle_degrees"] == "89.9"
 
 print("Boundary measurement test passed!")
 
+## test an invalid genus/species combination ##
+row_invalid_combination = {
+    "record_id": "ST009",
+    "location": "Reactor Wood",
+    "genus": "Quercus",
+    "species": "pendula",
+    "distance_m": "20",
+    "angle_degrees": "45"
+}
+
+cleaned_record, reasons = validate_record(
+    row_invalid_combination, 12, accepted_ids
+)
+
+assert cleaned_record == None
+assert reasons == ["invalid genus/species combination"]
+
+# check that the invalid record goes into issues, not clean_records (as suggested in formative feedback)
+clean_records, issues = process_records([row_invalid_combination])
+
+assert len(clean_records) == 0
+assert len(issues) == 1
+assert issues[0]["record_id"] == "ST009"
+assert issues[0]["reasons"] == "invalid genus/species combination"
+
+print("Invalid combination test passed!")
+
 ## test for missing measurements ##
 row_missing_measurements = {
     "record_id": "ST010",
@@ -205,9 +235,7 @@ assert reasons == [
 
 print("Missing measurements test passed!")
 
-#### TEST process_record() FUNCTION ####
-
-from clean_silwood_trees import process_records
+### TEST process_record() FUNCTION ###
 
 ## test for correct sorting by ID, using valid and invalid records ##
 test_rows = [
@@ -244,6 +272,9 @@ clean_records, issues = process_records(test_rows)
 assert len(clean_records) == 2
 assert len(issues) == 1
 
+# check that every input record is accounted for (as suggested in formative feedback)
+assert len(clean_records) + len(issues) == len(test_rows)
+
 # check that accepted records are sorted by record ID
 assert clean_records[0]["record_id"] == "ST001"
 assert clean_records[1]["record_id"] == "ST003"
@@ -255,8 +286,7 @@ assert issues[0]["reasons"] == "invalid location"
 
 print("Process records test passed!")
 
-#### TEST summarise_oaks() FUNCTION ####
-from clean_silwood_trees import summarise_oaks
+### TEST summarise_oaks() FUNCTION ###
 
 ## test whether counting oaks works ##
 oak_test_records = [
@@ -301,3 +331,51 @@ oak_counts = summarise_oaks(no_oak_records)
 assert oak_counts == []
 
 print("No oak test passed!")
+
+## test that rejected oak records are not counted ##
+
+oak_test_rows = [
+    {
+        "record_id": "ST011",
+        "location": "Manor House",
+        "genus": "Quercus",
+        "species": "robur",
+        "distance_m": "20",
+        "angle_degrees": "45"
+    },
+    {
+        "record_id": "ST012",
+        "location": "Manor House",
+        "genus": "Quercus",
+        "species": "pendula",  # invalid genus-species combination
+        "distance_m": "25",
+        "angle_degrees": "40"
+    },
+    {
+        "record_id": "ST013",
+        "location": "Reactor Wood",
+        "genus": "Quercus",
+        "species": "petraea",
+        "distance_m": "30",
+        "angle_degrees": "35"
+    }
+]
+
+# validate and separate the records
+clean_records, issues = process_records(oak_test_rows)
+
+# count only accepted oak records
+oak_counts = summarise_oaks(clean_records)
+
+# check that the invalid oak was rejected
+assert len(clean_records) == 2
+assert len(issues) == 1
+assert issues[0]["record_id"] == "ST012"
+
+# check that only the two valid oaks were counted
+assert oak_counts == [
+    {"species": "petraea", "count": "1"},
+    {"species": "robur", "count": "1"}
+]
+
+print("Accepted oak counting test passed!")
