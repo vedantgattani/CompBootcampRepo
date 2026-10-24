@@ -20,7 +20,13 @@ filename=$(basename "$1")
 
 echo "Creating a space delimited version of $1 ..."
 
-cat $1 | tr "\t" "," > "../results/$filename.txt"
+# make results directory if not already existing
+mkdir -p
+
+if ! tr ',' ' ' < "$1" > "results/$filename.txt"; then
+    printf "Error: conversion failed\n" >&2
+    exit 3
+fi
 
 echo "Done!"
 

@@ -21,8 +21,8 @@ tail -n +2 ../data/fasta/e_coli.fasta | tr -d '\n' | wc -c
 #4
 tail -n +2 ../data/fasta/e_coli.fasta | tr -d '\n' | grep -o 'ATGC' | wc -l
 
-# The first two commands remain the same as before, and are used to remove the header and newline characters. grep -o, as mentioned
-# in the assignment, outputs each individual occurance of A, T, G, and C, and wc -l counts those occurances.
+# The first two commands remain the same as before, and are used to remove the header and newline characters. grep -o 'ATGC', as mentioned
+# in the assignment, outputs each occurance of the complete literl motif ATGC and wc -l counts those occurances.
 
 #5
 echo "scale = 5 ; $(tail -n +2 ../data/fasta/e_coli.fasta | tr -d '\n' | grep -o '[AT]' | wc -l) / $(tail -n +2 ../data/fasta/e_coli.fasta | tr -d '\n' | grep -o '[GC]' | wc -l)" | bc -l

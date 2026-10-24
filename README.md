@@ -126,7 +126,7 @@ data/temperature contains all data files used to test csvtospace.sh
 data/tab-example.tsv was used to test tabtocsv.sh   
 
 code/unixPrac1.txt contains both code and text explaining what it does for FASTA exercise.  
-code/tabtocsv.sh contains script that converts space delimited files to comma delimited files.  
+code/tabtocsv.sh contains script that converts tab delimited files to comma delimited files.  
 code/csvtospace.sh contais script that converts comma delimited files to space delimited files.
 
 ## AI use ##
