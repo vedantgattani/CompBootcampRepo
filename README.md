@@ -174,3 +174,129 @@ echo "scale = x;" | bc found on stack overflow. Tried on basic arithmetic first,
 # learning README 
 My Git practice repository   
 I am trying a new naughty thing on this experimental branch 
+
+# In-class scripts
+The following are the descriptions, commands, and input files (if applicable) needed to run several scripts in the code/ directory that were created in class. All commands should be run from the project root.  
+
+`variables.sh`    
+Demonstrates Bash positional arguments, variable assignment, interactive input, and integer arithmetic. 
+Run:    bash code/variables.sh string1 string2
+When prompted, enter a string (e.g., hello world), followed by two integers separated by a space (e.g., 12 8).  
+Confirm that the script reports two command-line arguments, displays the correct argument values, accepts the new string, and calculates 12 + 8 = 20     
+
+`MyExampleScript.sh`  
+Demonstrates Bash variable assignment, accessing the $USER environment variable, and formatted output using printf. 
+Run:    bash code/MyExampleScript.sh    
+Confirm that the script prints Hello followed by the username returned by echo "$USER". 
+
+`boilerplate.sh`  
+Demonstrates a basic Bash script structure, including a shebang, comments, terminal output, and an exit status. 
+Run:    bash code/boilerplate.sh   
+Confirm that it prints This is a shell script! and exits successfully.   
+
+`CheckLabel.sh`   
+Demonstrates Bash conditional statements, argument validation, and exit codes.  
+Run and check:
+
+bash code/CheckLabel.sh oak       # Valid: prints "Selected species: oak"   
+bash code/CheckLabel.sh birch     # Invalid: reports unknown label  
+bash code/CheckLabel.sh           # Invalid: displays usage instructions    
+
+`CountLines.sh`   
+Demonstrates command-line arguments, input redirection, and line counting using wc -l.  
+Run:    bash code/CountLines.sh data/trees.csv 
+Compare the reported line count with wc -l < data/trees.csv. Both should match. 
+Input: User-specified text/CSV file. Output: Line count printed to the terminal; no files created.  
+
+`ConcatenateTwoFiles.sh`  
+Demonstrates file concatenation using cat and output redirection (> and >>).    
+Run:    
+mkdir -p results    
+bash code/ConcatanateTwoFiles.sh data/trees.csv data/trees.csv results/combined.csv 
+Confirm that results/combined.csv contains two consecutive copies of data/trees.csv, using wc -l to verify that its line count is twice the original.   
+Inputs: Two user-specified files. Output: One concatenated file, printed to the terminal and saved at the specified path.   
+
+`tiff2_png.sh`    
+Converts TIFF images in data/ to PNG format using ImageMagick.  
+Run:    bash code/tiff2_png.sh 
+With at least one .tif file in data/, confirm that a corresponding .png file is created in results/.    
+Input: data/*.tif. Output: results/*.png.   
+
+`loops.py`    
+Demonstrates Python for and while loops, iteration over lists, and cumulative addition. 
+Run:    python3 code/loops.py  
+Confirm that the script prints integers 0–4, iterates through the list, calculates a final cumulative sum of 1234, and prints integers 1–100.   
+
+`cfexercises1.py` 
+Demonstrates Python functions, conditionals, sorting, iteration, and recursive and iterative factorial calculations.    
+Run and check: Import the functions using python3 from the project root. Verify that foo_1(9) = 3, foo_2(3,5) = 5, foo_3(3,1,2) = [1,2,3], and all three factorial functions return 120 for input 5. Also check that foo_5(0) and foo_6(0) both return 1.   
+I updated the recursive factorial function's base case to handle 0! = 1, as suggested in the practical. 
+
+`cfexercises2.py` 
+Demonstrates Python control flow using for and while loops, conditional statements, modulo operations, and break.   
+Run:    python3 code/cfexercises2.py   
+Confirm that all six functions execute without errors and print the expected number of hello messages:  
+hello_1: 4  
+hello_2: 5  
+hello_3: 14 
+hello_4: 5  
+hello_5: 8  
+hello_6: 6 (hello! followed by numbers 0–5) 
+
+`MyExampleScript.py`  
+Demonstrates defining and calling a Python function, using docstrings, and formatted output with f-strings. 
+Run:    python3 code/MyExampleScript.py    
+Confirm that it prints The square of 2 is 4.    
+
+`boilerplate.py`  
+Demonstrates a basic Python script structure, including a main() function, docstrings, and the if __name__ == "__main__": convention.   
+Run:    python3 code/boilerplate.py    
+Confirm that it prints This is a boilerplate. Importing the module should not execute main().   
+
+`using_name.py`   
+Demonstrates Python's __name__ variable and the difference between running a script directly and importing it as a module.  
+Run and check:
+
+python3 code/using_name.py
+
+Expected: This module's name is: __main__   
+
+cd code 
+python3 -c "import using_name; print(using_name.module_name())" 
+cd ..   
+Expected: using_name, with no additional output during import.  
+
+`sysargv.py`  
+Demonstrates accessing command-line arguments using Python's sys.argv.  
+Run:
+
+python3 code/sysargv.py oak pine
+
+Confirm that it prints:
+
+Script name: code/sysargv.py    
+Number of arguments: 2  
+Arguments: ['oak', 'pine']  
+
+`control_flow.py` 
+Demonstrates Python conditional statements, loops, functions, default arguments, and prime-number calculations. 
+Run:    python3 code/control_flow.py   
+Confirm that the script runs without errors, correctly identifies 22 as even and 33 as odd, finds 5 as the largest divisor of 120, identifies 59 as prime and 60 as non-prime, and returns 25 prime numbers between 2 and 100.  
+
+`test_control_flow.py`    
+Demonstrates automated function testing using Python's doctest module.  
+Run:    python3 -m doctest -v code/test_control_flow.py    
+Confirm that all 3 doctests pass, including positive even and odd numbers and a negative even number. The output should report 3 passed and 0 failed.   
+
+`observations_practice.py`    
+Demonstrates reading CSV data using csv.DictReader and validating numerical counts. 
+Run:    python3 code/observations_practice.py  
+Confirm that the first and third observations are printed. Test parse_count() with "5", "0", "", and "-1" to verify valid, missing, and invalid counts. 
+Input: data/bootcamp_observations.csv. Output: Terminal output only.    
+I corrected parse_count() to compare and return integer counts rather than strings.
+
+`test_observations_practice.py`   
+Demonstrates automated testing using assertions and exception handling. 
+Run:    python3 code/test_observations_practice.py 
+Confirm that the script exits successfully without errors. It tests valid counts (2, 0), a missing count (""), and invalid inputs ("-1", "many", 2). Any failed test raises an error.   
+
