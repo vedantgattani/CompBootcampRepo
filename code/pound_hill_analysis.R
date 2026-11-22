@@ -105,19 +105,25 @@ PlotRichness <- QuadratRichness %>%
 
 #print(PlotRichness)
 
+# create results dir if not already there
+dir.create("results", showWarnings = FALSE)
+
 # save plot-level richness tables
 write.csv(PlotRichness, "results/pound_hill_plot_richness.csv", row.names = FALSE)
 
 ## create species richness plot ##
 library(ggplot2)
 
-pdf("results/observations_by_site.pdf")
-print(RichnessPlot <- ggplot(PlotRichness, aes(x = Cultivation, y = MeanRichness)) +
+# create plot
+RichnessPlot <- ggplot(PlotRichness, aes(x = Cultivation, y = MeanRichness)) +
     geom_point() +
     labs(title = "Plant species richness by cultivation treatment",
             x = "Cultivation treatment",
             y = "Mean species richness per quadrat") +
-    theme_classic())
+    theme_classic()
+
+pdf("results/pound_hill_plot_richness.pdf", width = 7, height = 5)
+print(RichnessPlot)
 dev.off()
 
 ## interpretation of plot ##

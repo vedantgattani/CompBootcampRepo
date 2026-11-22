@@ -88,5 +88,8 @@ output_name <- paste0(file_name, "_treeheights.csv")
 # create the full output path
 output_file <- file.path("results", output_name)
 
+# create results dir if not already there
+dir.create("results", showWarnings = FALSE)
+
 # export a file with tree height values
 write.csv(trees, output_file, row.names = FALSE)

@@ -40,6 +40,26 @@ And it matched the height calculated by physcially using the formula.
 
 Finally, I confirmed there were 120 data rows in the output file by using nrow(), and rerunning the script replaced outputs without appending suplicate rows.   
 
+## Generalizing tree height calculation ##
+The code/get_TreeHeight.R script calculates tree heights from a user-specified CSV file containing tree distances and angles. Unlike the fixed-input script, it accepts the input filename as a command-line argument.  
+
+To run the script from the project root:    
+
+    Rscript code/get_TreeHeight.R data/trees.csv    
+
+The script saves its output to results/trees_treeheights.csv. The output directory is created automatically if it does not already exist.   
+
+Testing the script: 
+The shell script code/run_get_TreeHeight.sh tests the generalised tree-height script using valid and invalid inputs.    
+
+Run it from the project root using:
+
+    bash code/run_get_TreeHeight.sh
+
+The wrapper creates the directories required for testing and checks whether the script produces the expected outputs or errors. 
+
+I tested additional boundary using distances of 0, 0.1, 100 and 100.1 metres. The script correctly rejected 0 and 100.1 metres while accepting 0.1 and 100 metres, consistent with the required distance range of greater than 0 and at most 100 metres.    
+
 ## Pound hill practical ##
 This analysis investigates how mean plant species richness per quadrat varies among March, May and October cultivation treatments at Pound Hill. It also compares species richness with total plant abundance.  
     Input: data/pound_hill_data.csv ; data/pound_hill_meta_data.csv     

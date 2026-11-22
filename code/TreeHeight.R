@@ -63,5 +63,8 @@ trees$height_m <- TreeHeight(
     trees$Distance.m
 )
  
+# create results dir if not already existing
+dir.create("results", showWarnings = FALSE)
+
 # export a file with tree height values
 write.csv(trees, "results/TreeHts.csv", row.names = FALSE)

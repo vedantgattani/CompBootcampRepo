@@ -1,5 +1,12 @@
 #!/bin/bash
 
+# stop the script if an unexpected command fails
+set -e
+
+# create the directories needed for testing
+mkdir -p sandbox
+mkdir -p results
+
 ## test the generalized tree height R script ##
 
 # run R script with original dataset
