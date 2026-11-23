@@ -244,7 +244,7 @@ hello_5: 8
 hello_6: 6 (hello! followed by numbers 0–5) 
 
 `MyExampleScript.py`  
-Demonstrates defining and calling a Python function, using docstrings, and formatted output with f-strings. 
+Demonstrates defining and calling a Python function, using docstrings, and formatted output with f-strings.     
 Run:    python3 code/MyExampleScript.py    
 Confirm that it prints The square of 2 is 4.    
 
@@ -300,3 +300,75 @@ Demonstrates automated testing using assertions and exception handling.
 Run:    python3 code/test_observations_practice.py 
 Confirm that the script exits successfully without errors. It tests valid counts (2, 0), a missing count (""), and invalid inputs ("-1", "many", 2). Any failed test raises an error.   
 
+`debugme.py`  
+Demonstrates interactive debugging using Python's built-in debugger (pdb) and breakpoint(). 
+Run:    python3 code/debugme.py    
+When execution pauses at (Pdb), enter p y to inspect the variable (0), then n to step forward and observe the ZeroDivisionError caused by division by zero. Enter q to exit the debugger if needed. 
+Note: The division-by-zero error is intentional and retained to demonstrate debugging.
+
+`basic_io.R`  
+Demonstrates reading CSV files and writing, appending, and overwriting data using write.csv() and write.table().    
+Run:    Rscript code/basic_io.R    
+Confirm that results/MyData.csv is created without errors. Inspect the file to verify that the final write.table() call overwrites the earlier outputs and omits column headers.    
+Input: data/trees.csv. Output: results/MyData.csv.  
+
+`boilerplate.R`   
+Demonstrates defining and calling R functions, checking argument types using class(), and returning values. 
+Run:    Rscript code/boilerplate.R 
+Confirm that the script identifies numeric arguments (1, 2) and character arguments ("riki", "Tiki") without errors.    
+
+`control_flow.R`  
+Demonstrates R conditional statements (if/else), for and while loops, random number generation, and iteration over vectors. 
+Run:    Rscript code/control_flow.r    
+Confirm that the script prints "a is TRUE", squares of integers 1–10, three species names, vector elements, and squares from 1–100. The random-number condition may or may not print "Less than a half" depending on the generated value.   
+
+`r_conditionals.R`    
+Demonstrates R conditional statements through functions that identify even numbers, powers of two, and prime numbers.   
+Run:    Rscript code/r_conditionals.R  
+Confirm that is.even(6) returns "6 is even!", is.power2(4) returns "4 is a power of 2!", and is.prime(3) returns "3 is a prime!". Also test is.prime(2) after the modification. 
+
+`break.R` 
+Demonstrates using break to terminate a while loop when a specified condition is met.   
+Run:    Rscript code/break.R   
+Confirm that the script prints i equals 0 through i equals 9 and terminates when i reaches 10.   
+
+`next.R ` 
+Demonstrates using next to skip iterations of a for loop when a condition is met.   
+Run:    Rscript code/next.R    
+Confirm that the script skips even numbers and prints only 1, 3, 5, 7, 9.   
+
+`try.R`   
+Demonstrates error handling using try(), repeated sampling, lapply(), and for loops.    
+Run:    Rscript code/try.R 
+Confirm that the script completes despite occasional "Couldn't calculate mean: too few unique values!" errors. The fixed random seed makes the sampling reproducible.   
+Note: The errors are intentional and handled by try().  
+
+`browse.R`    
+Demonstrates interactive debugging using R's browser() function within an exponential population growth simulation. 
+Run: Open R from the project root using R, then enter:  
+
+source("code/browse.R") 
+
+When execution pauses at Browse[1]>, enter n to step through the simulation and print(N) to inspect population values. Enter c to continue execution at each breakpoint until the simulation finishes. Confirm that the exponential growth plot appears.    
+Note: Debugging pauses are intentional. 
+
+`observations_practice.R`   
+Demonstrates CSV validation, handling missing values, removing duplicate observations, site-level summaries, and base-R plotting.   
+Run:    Rscript code/observations_practice.R   
+Confirm that the site summaries are A (2, 1), B (0, 0), C (NA, 2), and D (0, 0). Verify that all stopifnot() checks pass, invalid negative counts are rejected, and the PDF correctly distinguishes missing counts from observed zeros. Rerun to confirm reproducibility.   
+Inputs: data/bootcamp_observations.csv, data/bootcamp_observations_boundary.csv and data/bootcamp_observations_invalid.csv. 
+Output: results/observations_by_site.pdf.   
+
+`data_wrang.R`    
+Demonstrates data wrangling in R, including transposing matrices, handling blank values, converting data types, and reshaping data from wide to long format using reshape2. 
+Run:    Rscript code/data_wrang.R  
+Confirm that the script runs without errors and creates results/pound_hill_long.csv. Verify that the long-format dataset contains 2,419 rows and 6 columns, representing 41 species across 59 quadrats. 
+Inputs: data/pound_hill_data.csv, data/pound_hill_meta_data.csv.    
+Output: results/pound_hill_long.csv.    
+
+`data_wrang_tidy.R`   
+Demonstrates data wrangling using tidyr::pivot_longer() to convert the Pound Hill dataset from wide to long format. 
+Run:    Rscript code/data_wrang_tidy.R 
+Confirm that results/pound_hill_long_tidy.csv contains 2,419 rows and 6 columns. Compared the output with data_wrang.R after sorting both datasets by their identifying columns; all.equal() returned TRUE. 
+Inputs: data/pound_hill_data.csv, data/pound_hill_meta_data.csv.    
+Output: results/pound_hill_long_tidy.csv.   
