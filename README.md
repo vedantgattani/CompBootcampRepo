@@ -1,10 +1,11 @@
 # Computational Bootcamp Repo 2026
 This repository contains all files used and created during the 2026 computational bootcamp at Imperial College London, Silwood Park.    
-Important files/directories: README.md, code/, and data/    
 
 ## Project structure ##
+Important files/directories:    
 code/ contains all scripts cloned from MulQuaBio repo or created for assignments.   
-data/ contains all files used for assignments/practicals through the course.    
+data/ contains all files used for assignments/practicals through the course.     
+Scroll all the way down for full directory structure.   
 
 # Week 3 Assignment notes     
 
@@ -372,3 +373,94 @@ Run:    Rscript code/data_wrang_tidy.R
 Confirm that results/pound_hill_long_tidy.csv contains 2,419 rows and 6 columns. Compared the output with data_wrang.R after sorting both datasets by their identifying columns; all.equal() returned TRUE. 
 Inputs: data/pound_hill_data.csv, data/pound_hill_meta_data.csv.    
 Output: results/pound_hill_long_tidy.csv.   
+
+## Project Directory Structure
+
+```
+CMEECourseWork/
+├── .gitignore
+├── README.md
+├── Feedback/
+│   ├── assignment-1-2026.md
+│   ├── assignment-2-2026.md
+│   └── assignment-3-2026.md
+├── code/
+│   ├── CheckLabel.sh
+│   ├── ConcatenateTwoFiles.sh
+│   ├── CountLines.sh
+│   ├── MyExampleScript.py
+│   ├── MyExampleScript.sh
+│   ├── TreeHeight.R
+│   ├── basic_io.R
+│   ├── boilerplate.R
+│   ├── boilerplate.py
+│   ├── boilerplate.sh
+│   ├── break.R
+│   ├── browse.R
+│   ├── cfexercises1.py
+│   ├── cfexercises2.py
+│   ├── clean_silwood_trees.py
+│   ├── control_flow.R
+│   ├── control_flow.py
+│   ├── csvtospace.sh
+│   ├── data_wrang.R
+│   ├── data_wrang_tidy.R
+│   ├── debugme.py
+│   ├── get_TreeHeight.R
+│   ├── loops.py
+│   ├── next.R
+│   ├── observations_practice.R
+│   ├── observations_practice.py
+│   ├── pound_hill_analysis.R
+│   ├── r_conditionals.R
+│   ├── run_get_TreeHeight.sh
+│   ├── sysargv.py
+│   ├── tabtocsv.sh
+│   ├── test_control_flow.py
+│   ├── test_observations_practice.py
+│   ├── test_silwood_trees.py
+│   ├── tiff2_png.sh
+│   ├── try.R
+│   ├── unixPrac1.txt
+│   ├── using_name.py
+│   └── variables.sh
+├── data/
+│   ├── bootcamp_observations.csv
+│   ├── bootcamp_observations_boundary.csv
+│   ├── bootcamp_observations_invalid.csv
+│   ├── fasta/
+│   │   ├── 407228326.fasta
+│   │   ├── 407228412.fasta
+│   │   └── e_coli.fasta
+│   ├── pound_hill_data.csv
+│   ├── pound_hill_meta_data.csv
+│   ├── silwood_trees_metadata.md
+│   ├── silwood_trees_raw.csv
+│   ├── tab-example.tsv
+│   ├── temperatures/
+│   │   ├── 1800.csv
+│   │   ├── 1801.csv
+│   │   ├── 1802.csv
+│   │   └── 1803.csv
+│   └── trees.csv
+├── results/
+└── sandbox/
+```
+
+### Directory and File Descriptions
+
+`code/` — Bash, Python and R scripts for in-class exercises, coursework assignments and automated tests.
+
+`data/` — Input datasets, metadata and test datasets required by the scripts.
+
+`Feedback/` — Formative feedback received for Assignments 1–3.
+
+`results/` — Generated data files, figures and analysis outputs. Excluded from version control.
+
+`sandbox/` — Temporary files used during development and testing. Excluded from version control.
+
+`README.md` — Project documentation, software requirements, execution instructions and verification checks.
+
+`.gitignore` — Defines files and directories excluded from version control.
+
+The `results/` and `sandbox/` directories are not included in a fresh clone and are created locally as required.
