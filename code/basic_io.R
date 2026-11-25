@@ -4,11 +4,11 @@
 
 MyData <- read.csv("data/trees.csv", header = TRUE) # Import with headers
 
+dir.create("results", showWarnings = FALSE)
+
 write.csv(MyData, "results/MyData.csv") # Write it as a new file
 
 write.table(MyData[1, ], file = "results/MyData.csv", append = TRUE) # Append to it
-
-dir.create("results", showWarnings = FALSE)
 
 write.csv(MyData, "results/MyData.csv", row.names = TRUE) # Write row names
 
